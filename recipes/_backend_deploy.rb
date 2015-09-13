@@ -1,4 +1,6 @@
-user 'backend'
+user 'backend' do
+  home '/data/backend'
+end
 
 directory '/data/backend' do
   recursive true
