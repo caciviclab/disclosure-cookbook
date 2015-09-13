@@ -6,4 +6,5 @@ package 'python-dev'
 group 'opencal'
 
 include_recipe 'disclosure-cookbook::_nginx'
+include_recipe 'disclosure-cookbook::_cronjobs'
 include_recipe 'disclosure-cookbook::_backend_deploy'
