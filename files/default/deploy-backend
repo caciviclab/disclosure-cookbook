@@ -8,13 +8,13 @@ echo 'Fetching latest commits from https://github.com/opencalifornia/disclosure-
 
 echo "Deploying into ${deploy_dir}..."
 sudo -i -u backend /bin/bash -exc "
-  cd /data/git/disclosure-backend && git fetch
-  mkdir -p $deploy_dir
-  git archive HEAD | tar xC $deploy_dir
-  source /data/backend/env/bin/activate
-  pip install -r $deploy_dir/requirements_dev.txt
-  pip install uwsgi
-  ln -sfT $deploy_dir /data/backend/current
+  cd /data/git/disclosure-backend && git fetch;
+  mkdir -p $deploy_dir;
+  git archive origin/master | tar xC $deploy_dir;
+  source /data/backend/env/bin/activate;
+  pip install -r $deploy_dir/requirements.txt;
+  pip install uwsgi;
+  ln -sfT $deploy_dir /data/backend/current;
 "
 
 echo "Done!"
