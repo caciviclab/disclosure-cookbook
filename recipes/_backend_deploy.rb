@@ -6,12 +6,12 @@ directory '/data/backend' do
   group 'backend'
 end
 
-file '/usr/local/bin/deploy-backend' do
+cookbook_file '/usr/local/bin/deploy-backend' do
   mode 0775
   group 'opencal'
 end
 
-file '/etc/init/disclosure-backend.conf' do
+cookbook_file '/etc/init/disclosure-backend.conf' do
   source 'upstart.conf'
 end
 

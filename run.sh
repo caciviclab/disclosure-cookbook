@@ -10,12 +10,8 @@ json_attribs "/etc/chef/solo.json"
 EOF
 
 echo 'Installing /etc/chef/solo.json'
-echo '{ "run_list": "recipe[disclosure-backend]" }' | ssh opencal.opendisclosure.io 'sudo tee /etc/chef/solo.json >/dev/null'
+echo '{ "run_list": "recipe[disclosure-cookbook]" }' | ssh opencal.opendisclosure.io 'sudo tee /etc/chef/solo.json >/dev/null'
 
 echo 'Deploying...'
-rsync -r ../cookbook opencal.opendisclosure.io:/tmp/disclosure-backend/
-ssh opencal.opendisclosure.io '
-rm -rf /tmp/disclosure-backend/disclosure-backend &&
-mv /tmp/disclosure-backend/cookbook /tmp/disclosure-backend/disclosure-backend &&
-sudo chef-solo
-'
+rsync --delete --archive . opencal.opendisclosure.io:/tmp/disclosure-backend/disclosure-cookbook
+ssh opencal.opendisclosure.io 'sudo chef-solo'

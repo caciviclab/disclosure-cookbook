@@ -5,5 +5,5 @@ package 'python-dev'
 
 group 'opencal'
 
-include_recipe 'disclosure-backend::_nginx'
-include_recipe 'disclosure-backend::_backend_deploy'
+include_recipe 'disclosure-cookbook::_nginx'
+include_recipe 'disclosure-cookbook::_backend_deploy'
