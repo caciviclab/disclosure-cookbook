@@ -23,6 +23,6 @@ end
 
 file '/etc/sudoers.d/backend' do
   mode 0440
-  content "backend ALL=(ALL:ALL) /sbin/initctl restart disclosure-backend\n"
+  content "backend ALL=(ALL:ALL) NOPASSWD:/sbin/initctl restart disclosure-backend\n"
   verify '/usr/sbin/visudo -c -f %{file}'
 end
