@@ -2,6 +2,8 @@ package 'python-virtualenv'
 package 'libmysqlclient-dev'
 package 'libpq-dev'
 package 'python-dev'
+package 'nodejs'
+package 'npm'
 
 group 'opencal'
 
