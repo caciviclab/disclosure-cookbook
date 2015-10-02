@@ -12,6 +12,7 @@ sudo -i -u backend /bin/bash -exc "
   cd /data/git/disclosure-backend && git fetch;
   mkdir -p $deploy_dir;
   git archive origin/${git_branch} | tar xC $deploy_dir;
+  NVM_DIR=/data/backend/.nvm source /data/backend/.nvm/nvm.sh;
   source /data/backend/env/bin/activate;
   pip install -r $deploy_dir/requirements.txt;
   pip install uwsgi;
@@ -19,6 +20,7 @@ sudo -i -u backend /bin/bash -exc "
   (
     cd $deploy_dir;
     npm install;
+
     python disclosure-backend/manage.py collectstatic;
   );
   ln -sfT $deploy_dir /data/backend/current;
