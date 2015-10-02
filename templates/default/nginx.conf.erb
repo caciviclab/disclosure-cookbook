@@ -10,4 +10,8 @@ server {
     include uwsgi_params;
     uwsgi_pass disclosurebackend;
   }
+
+  location /static {
+    alias /data/backend/static;
+  }
 }
