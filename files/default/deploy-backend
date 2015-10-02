@@ -20,8 +20,7 @@ sudo -i -u backend /bin/bash -exc "
   (
     cd $deploy_dir;
     npm install;
-
-    python disclosure-backend/manage.py collectstatic;
+    python disclosure-backend/manage.py collectstatic --noinput;
   );
   ln -sfT $deploy_dir /data/backend/current;
   sudo /sbin/initctl restart disclosure-backend;
