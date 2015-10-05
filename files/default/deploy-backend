@@ -12,9 +12,10 @@ sudo -i -u backend /bin/bash -exc "
   mkdir -p $deploy_dir;
   git archive origin/master | tar xC $deploy_dir;
   source /data/backend/env/bin/activate;
-  pip install -r $deploy_dir/requirements.txt;
+  pip install --exists-action w -r $deploy_dir/requirements.txt;
   pip install uwsgi;
   ln -sf /data/backend/settings_local.py $deploy_dir/disclosure-backend/project/settings_local.py;
+  python $deploy_dir/disclosure-backend/manage.py migrate --noinput;
   ln -sfT $deploy_dir /data/backend/current;
   sudo /sbin/initctl restart disclosure-backend;
 "

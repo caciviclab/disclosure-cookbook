@@ -1,6 +1,7 @@
 package 'python-virtualenv'
 package 'libmysqlclient-dev'
 package 'libpq-dev'
+package 'libjpeg-dev'
 package 'python-dev'
 
 group 'opencal'
