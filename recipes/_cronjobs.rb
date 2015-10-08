@@ -32,6 +32,6 @@ cron 'run-netfile-import' do
       -o /data/etl-reports/archive
       -n netfile
         python /data/backend/current/disclosure-backend/manage.py downloadnetfilerawdata --no-color
-        --noinput --verbosity=3
+        --verbosity=3
   }.join(' ')
 end
