@@ -3,4 +3,4 @@ DEPENDENCIES
     path: .
 
 GRAPH
-  disclosure-backend (0.1.0)
+  disclosure-cookbook (0.1.0)
