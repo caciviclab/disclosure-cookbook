@@ -5,14 +5,17 @@ upstream disclosurebackend {
 server {
   listen 80;
   server_name opencal.opendisclosure.io disclosure.caciviclab.org;
+  root /data/backend/current/disclosure-backend;
+
+  location /static {
+    rewrite ^/static/(.*)$ /.static/$1 break;
+  }
+
+  location /.static {
+  }
 
   location / {
     include uwsgi_params;
     uwsgi_pass disclosurebackend;
-  }
-
-  location /static {
-    #alias /data/backend/static;
-    alias /data/backend/current/disclosure-backend/static;
   }
 }
