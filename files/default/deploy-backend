@@ -19,6 +19,7 @@ sudo -i -u backend /bin/bash -exc "
   python $deploy_dir/disclosure-backend/manage.py collectstatic -v1 --noinput;
   ln -sfT $deploy_dir /data/backend/current;
   sudo /sbin/initctl restart disclosure-backend;
+  find /data/backend -maxdepth 1 -name '1*' | sort -g | head -n -5 | xargs rm -rf;
 "
 
 echo "Done!"
