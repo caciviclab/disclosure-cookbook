@@ -14,9 +14,9 @@ sudo -i -u backend /bin/bash -exc "
   source /data/backend/env/bin/activate;
   pip install --exists-action w -r $deploy_dir/requirements.txt;
   pip install uwsgi;
-  ln -sf /data/backend/settings_local.py $deploy_dir/disclosure-backend/project/settings_local.py;
-  python $deploy_dir/disclosure-backend/manage.py migrate --noinput;
-  python $deploy_dir/disclosure-backend/manage.py collectstatic -v1 --noinput;
+  ln -sf /data/backend/settings_local.py $deploy_dir/disclosure_backend/project/settings_local.py;
+  python $deploy_dir/manage.py migrate --noinput;
+  python $deploy_dir/manage.py collectstatic -v1 --noinput;
   ln -sfT $deploy_dir /data/backend/current;
   sudo /sbin/initctl restart disclosure-backend;
   find /data/backend -maxdepth 1 -name '1*' | sort -g | head -n -5 | xargs rm -rf;
