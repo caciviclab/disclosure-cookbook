@@ -5,7 +5,7 @@ upstream disclosurebackend {
 server {
   listen 80;
   server_name admin.caciviclab.org disclosure.caciviclab.org;
-  root /data/backend/current/disclosure_backend;
+  root /data/backend/current/disclosure;
 
   location /static {
     rewrite ^/static/(.*)$ /.static/$1 break;
