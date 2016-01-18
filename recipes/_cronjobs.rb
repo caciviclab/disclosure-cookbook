@@ -15,7 +15,7 @@ cron 'run-calaccess-raw-import' do
       -l /data/etl-reports
       -o /data/etl-reports/archive
       -n calaccess
-        python /data/backend/current/disclosure-backend/manage.py downloadcalaccessrawdata --no-color
+        python /data/backend/current/manage.py downloadcalaccessrawdata --no-color
         --noinput --verbosity=3
   }.join(' ')
 end
@@ -31,7 +31,24 @@ cron 'run-netfile-import' do
       -l /data/etl-reports
       -o /data/etl-reports/archive
       -n netfile
-        python /data/backend/current/disclosure-backend/manage.py downloadnetfilerawdata --no-color
+        python /data/backend/current/manage.py downloadnetfilerawdata --no-color
+        --verbosity=3
+  }.join(' ')
+end
+
+cron 'run-xformnetfile-import' do
+  user 'backend'
+  minute '08'
+  hour '2'
+  path '/data/backend/env/bin:$PATH'
+
+  command %w{
+    /data/backend/current/cron/cronrunner.py
+      -l /data/etl-reports
+      -o /data/etl-reports/archive
+      -n xformnetfile
+        python /data/backend/current/manage.py xformnetfilerawdata --no-color
+        --skip-download
         --verbosity=3
   }.join(' ')
 end
