@@ -2,10 +2,15 @@ user 'backend' do
   home '/data/backend'
 end
 
-directory '/data/backend' do
-  recursive true
-  owner 'backend'
-  group 'backend'
+%w[
+  /data/backend
+  /data/backend/shared/data
+].each do |dirname|
+  directory dirname do
+    recursive true
+    owner 'backend'
+    group 'backend'
+  end
 end
 
 cookbook_file '/usr/local/bin/deploy-backend' do
