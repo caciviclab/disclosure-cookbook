@@ -2,10 +2,26 @@ upstream disclosurebackend {
   server 127.0.0.1:8080 fail_timeout=0;
 }
 
+upstream elasticsearch {
+  server 127.0.0.1:9200 fail_timeout=0;
+}
+
+upstream search {
+  server 127.0.0.1:3000 fail_timeout=0;
+}
+
 server {
   listen 80;
   server_name admin.caciviclab.org api.caciviclab.org disclosure.caciviclab.org;
   root /data/backend/current/disclosure;
+
+  location /elasticsearch {
+    proxy_pass http://elasticsearch/;
+  }
+
+  location /search {
+    proxy_pass http://search/;
+  }
 
   location /static {
     rewrite ^/static/(.*)$ /.static/$1 break;
