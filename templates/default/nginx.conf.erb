@@ -15,6 +15,10 @@ server {
     proxy_pass http://elasticsearch/;
   }
 
+  location /search {
+    return 302 /search/;
+  }
+
   location ~ ^/search(/public)?(.*)$ {
     root /data/search/current;
     try_files /public/$2 /search/public/index.html;
