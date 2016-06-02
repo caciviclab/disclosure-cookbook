@@ -1,0 +1,21 @@
+#!/bin/bash
+set -euo pipefail
+
+now=$(date +%s)
+deploy_dir=/data/search/$now
+
+echo 'Fetching latest commits...'
+
+# TODO: share node_modules between build directories, since it is ~100 MB each
+# time
+
+sudo -i -u search /bin/bash -exc "
+  cd /data/git/disclosuresearch && git fetch;
+  mkdir -p $deploy_dir;
+  git archive origin/master | tar xC $deploy_dir;
+  cd $deploy_dir;
+  npm install;
+  \$(npm bin)/webpack -p --config webpack.config.production.js --bail;
+  ln -sfT $deploy_dir /data/search/current;
+  touch /data/search/current/.deploy-success;
+"
