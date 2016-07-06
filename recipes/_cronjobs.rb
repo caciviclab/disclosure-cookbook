@@ -33,6 +33,7 @@ cron 'run-netfile-import' do
       -n netfile
         python /data/backend/current/manage.py downloadnetfilerawdata --no-color
         --verbosity=3
+        --years 2016
   }.join(' ')
 end
 
@@ -48,6 +49,8 @@ cron 'run-xformnetfile-import' do
       -o /data/etl-reports/archive
       -n xformnetfile
         python /data/backend/current/manage.py xformnetfilerawdata --no-color
+        --agencies CSD,COAK
+        --years 2016
         --skip-download
         --verbosity=3
   }.join(' ')
