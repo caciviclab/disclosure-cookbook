@@ -9,7 +9,7 @@ upstream elasticsearch {
 server {
   listen 80;
   server_name admin.caciviclab.org api.caciviclab.org disclosure.caciviclab.org;
-  root /data/backend/current/disclosure;
+  root /data/backend/current;
 
   location /elasticsearch {
     proxy_pass http://elasticsearch/;
@@ -25,10 +25,6 @@ server {
   }
 
   location /static {
-    rewrite ^/static/(.*)$ /.static/$1 break;
-  }
-
-  location /.static {
   }
 
   location / {
