@@ -17,6 +17,7 @@ sudo -i -u backend /bin/bash -exc "
   ln -sf /data/backend/settings_local.py $deploy_dir/disclosure/settings_local.py;
   ln -sfT /data/backend/shared/data $deploy_dir/data;
   python $deploy_dir/manage.py migrate --noinput;
+  python $deploy_dir/manage.py migrate --database calaccess_raw --noinput;
   python $deploy_dir/manage.py collectstatic -v1 --noinput;
   ln -sfT $deploy_dir /data/backend/current;
   sudo /sbin/initctl restart disclosure-backend;
