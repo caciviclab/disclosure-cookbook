@@ -7,7 +7,14 @@ deploy_dir=/data/backend/$now
 echo 'Fetching latest commits from https://github.com/caciviclab/disclosure-backend.git...'
 
 echo "Deploying into ${deploy_dir}..."
-sudo -i -u backend /bin/bash -exc "
+
+if [ "$USER" == "backend" ]; then
+  deploy_exec="/bin/bash -exc"
+else
+  deploy_exec="sudo -i -u backend /bin/bash -exc"
+fi
+
+$deploy_exec "
   cd /data/git/disclosure-backend && git fetch;
   mkdir -p $deploy_dir;
   git archive origin/master | tar xC $deploy_dir;
